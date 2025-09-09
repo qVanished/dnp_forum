@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{DAD03C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Server\ClassLibrary1\Entities.csproj", "{B5881CE4-BD91-4E79-9EDD-AC18779B4E39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryContracts", "Server\RepositoryContracts\RepositoryContracts.csproj", "{C758967A-CB66-47B2-B6FE-ED29B097041D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,11 +45,24 @@ Global
 		{B5881CE4-BD91-4E79-9EDD-AC18779B4E39}.Release|x64.Build.0 = Release|Any CPU
 		{B5881CE4-BD91-4E79-9EDD-AC18779B4E39}.Release|x86.ActiveCfg = Release|Any CPU
 		{B5881CE4-BD91-4E79-9EDD-AC18779B4E39}.Release|x86.Build.0 = Release|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Debug|x64.Build.0 = Debug|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Debug|x86.Build.0 = Debug|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Release|x64.ActiveCfg = Release|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Release|x64.Build.0 = Release|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Release|x86.ActiveCfg = Release|Any CPU
+		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B5881CE4-BD91-4E79-9EDD-AC18779B4E39} = {DAD03CFC-D5FA-AC94-41C7-9ABAB326F09E}
+		{C758967A-CB66-47B2-B6FE-ED29B097041D} = {DAD03CFC-D5FA-AC94-41C7-9ABAB326F09E}
 	EndGlobalSection
 EndGlobal
