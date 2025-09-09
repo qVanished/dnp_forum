@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\Entities.csproj" />
+    <ProjectReference Include="..\RepositoryContracts\RepositoryContracts.csproj" />
   </ItemGroup>
 
 </Project>

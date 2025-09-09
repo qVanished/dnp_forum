@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Server\ClassLib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryContracts", "Server\RepositoryContracts\RepositoryContracts.csproj", "{C758967A-CB66-47B2-B6FE-ED29B097041D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryRepositories", "Server\InMemoryRepositories\InMemoryRepositories.csproj", "{EEB9536E-1F55-443F-802A-31895D8BCD05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,18 @@ Global
 		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Release|x64.Build.0 = Release|Any CPU
 		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Release|x86.ActiveCfg = Release|Any CPU
 		{C758967A-CB66-47B2-B6FE-ED29B097041D}.Release|x86.Build.0 = Release|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Debug|x64.Build.0 = Debug|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Debug|x86.Build.0 = Debug|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Release|x64.ActiveCfg = Release|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Release|x64.Build.0 = Release|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Release|x86.ActiveCfg = Release|Any CPU
+		{EEB9536E-1F55-443F-802A-31895D8BCD05}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +78,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B5881CE4-BD91-4E79-9EDD-AC18779B4E39} = {DAD03CFC-D5FA-AC94-41C7-9ABAB326F09E}
 		{C758967A-CB66-47B2-B6FE-ED29B097041D} = {DAD03CFC-D5FA-AC94-41C7-9ABAB326F09E}
+		{EEB9536E-1F55-443F-802A-31895D8BCD05} = {DAD03CFC-D5FA-AC94-41C7-9ABAB326F09E}
 	EndGlobalSection
 EndGlobal
