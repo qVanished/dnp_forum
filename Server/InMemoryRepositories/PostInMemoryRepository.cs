@@ -19,17 +19,29 @@ public class PostInMemoryRepository : IPostRepository
 
     public Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        Post? postToRemove = posts.SingleOrDefault(p => p.Id == id);
+        if (postToRemove is null)
+        {
+            throw new InvalidOperationException($"Post with ID'{id}' not found");
+
+        }
+        posts.Remove(postToRemove);
+        return Task.CompletedTask;
     }
 
     public IQueryable<Post> GetManyAsync()
     {
-        throw new NotImplementedException();
+        return posts.AsQueryable();
     }
 
     public Task<Post> GetSingleAsync(int id)
     {
-        throw new NotImplementedException();
+        Post? existingPost = posts.SingleOrDefault(p => p.Id == id);
+        if (existingPost is null)
+        {
+            throw new InvalidOperationException($"Post with ID'{id}' not found");
+        }
+        return Task.FromResult(existingPost);
     }
 
     public Task UpdateAsync(Post post)
@@ -43,4 +55,6 @@ public class PostInMemoryRepository : IPostRepository
         posts.Add(post);
         return Task.CompletedTask;
     }
+
+   
 }
