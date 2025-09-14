@@ -8,4 +8,13 @@ public class Post
     public string Title { get; set; }
     public string Body { get; set; }
     public int UserId { get; set; }
+    private static int ID = 0;
+
+    public Post(string title, string body, int userId)
+    {
+        Id = ID++;
+        Title = title;
+        Body = body;
+        UserId = userId;
+    }
 }
