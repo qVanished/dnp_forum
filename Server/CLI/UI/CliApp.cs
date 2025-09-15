@@ -33,35 +33,40 @@ public class CliApp
 
             string value = Console.ReadLine();
 
-            var view = new Object();
+           
             switch (value)
             {
                 case "cu":
-                    view = new CreateUserView(UserRepository);
+                    var view = new CreateUserView(UserRepository);
+                    await view.StartAsync();
                     break;
 
                 case "pt":
-                    view = new CreatePostView(PostRepository);
+                    var view1 = new CreatePostView(PostRepository);
+                    await view1.StartAsync();
                     break;
 
                 case "cc":
-                    view = new CreateCommentView(CommentRepository);
+                    var view2 = new CreateCommentView(CommentRepository);
+                    await view2.StartAsync();
                     break;
 
                 case "vp":
-                    view = new SinglePostView(PostRepository, CommentRepository);
+                    var view3 = new SinglePostView(PostRepository, CommentRepository);
+                    await view3.StartAsync();
                     break;
 
                 case "vps":
-                    view = new ManagePostsView(PostRepository);
+                    var view4 = new ManagePostsView(PostRepository);
+                    await view4.StartAsync();
                     break;
 
                 default:
                     Console.WriteLine("Action not supported");
                     break;
             }
+            
         }
-        //add start Async methods to views.
 
     }
 }

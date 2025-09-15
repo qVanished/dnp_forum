@@ -22,6 +22,12 @@ public class ManagePostsView
         {
             Console.WriteLine($"Post: {post.Id} {post.Title} ");
         }
-       
+
+    }
+
+    public async Task StartAsync()
+    {
+        Console.BackgroundColor = ConsoleColor.DarkGray;
+        await displayPostAsync();
     }
 }

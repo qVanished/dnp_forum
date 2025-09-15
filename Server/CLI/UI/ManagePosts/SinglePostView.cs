@@ -26,4 +26,12 @@ public class SinglePostView
         }
     }
 
+    public async Task StartAsync()
+    {
+        Console.BackgroundColor = ConsoleColor.Red;
+        Console.WriteLine("Input ID:");
+        int id = Int32.Parse(Console.ReadLine());
+
+        await displayPostAsync(id);
+    }
 }
