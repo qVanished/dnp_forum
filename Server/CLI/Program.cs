@@ -1,12 +1,12 @@
 ﻿using ClassLibrary1;
 using CLI.UI;
-using InMemoryRepositories;
+using FileRepositories;
 using RepositoryContracts;
 
 Console.WriteLine("Starting CLI app");
-IUserRepository userRepository = new UserInMemoryRepository();
-ICommentRepository commentRepository = new CommentInMemoryRepository();
-IPostRepository postRepository = new PostInMemoryRepository();
+IUserRepository userRepository = new UserFileRepository();
+ICommentRepository commentRepository = new CommentFileRepository();
+IPostRepository postRepository = new PostFileRepository();
 await userRepository.AddAsync(new User("dawid", "dupa123"));
 await userRepository.AddAsync(new User("vane", "dupa444"));
 await postRepository.AddAsync(new Post("Unaa", "qqq", 12));

@@ -1,5 +1,4 @@
 using System;
-using InMemoryRepositories;
 using RepositoryContracts;
 using ClassLibrary1;
 

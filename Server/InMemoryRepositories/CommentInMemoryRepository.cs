@@ -34,12 +34,12 @@ public class CommentInMemoryRepository : ICommentRepository
         return Task.FromResult(comments.AsQueryable());
     }
 
-    public Task<IQueryable<Comment>> GetManyAsync(int id)
+    public Task<IQueryable<Comment>> GetManyAsync(int postId)
     {
         List<Comment> filteredComment = new List<Comment>();
         foreach (Comment comment in comments)
         {
-            if (comment.PostId == id) filteredComment.Add(comment);
+            if (comment.PostId == postId) filteredComment.Add(comment);
 
         }
         

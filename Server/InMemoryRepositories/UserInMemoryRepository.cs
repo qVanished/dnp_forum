@@ -29,14 +29,14 @@ public class UserInMemoryRepository : IUserRepository
         return Task.CompletedTask;
     }
 
-    public IQueryable<User> GetManyAsync()
+    public Task<IQueryable<User>> GetManyAsync()
     {
-         return users.AsQueryable();
+        return Task.FromResult(users.AsQueryable());
     }
 
     public Task<User> GetSingleAsync(int id)
     {
-         User? existingUser = users.SingleOrDefault(p => p.Id == id);
+        User? existingUser = users.SingleOrDefault(p => p.Id == id);
         if (existingUser is null)
         {
             throw new InvalidOperationException($"User with ID'{id}' not found");
