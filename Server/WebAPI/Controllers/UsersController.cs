@@ -27,7 +27,8 @@ public class UsersController : ControllerBase
     {
         User user = new(request.Username, request.Password);
         User created = await userRepository.AddAsync(user);
-        return Results.Created($"/users/{created.Id}", created);
+        GetUserDTO getUserDTO = new GetUserDTO(created.Username, created.Id);
+        return Results.Created($"/users/{getUserDTO.Id}", getUserDTO);
     }
 
     [HttpPatch("{id:int}")]
@@ -46,19 +47,23 @@ public class UsersController : ControllerBase
     public async Task<IResult> GetUser([FromRoute] int id)
     {
         User user = await userRepository.GetSingleAsync(id);
-        return Results.Ok(user);
+        GetUserDTO getUserDTO = new GetUserDTO(user.Username, user.Id);
+        return Results.Ok(getUserDTO);
     }
 
     [HttpGet]
-    public async Task<IResult> GetUsers(
-        [FromQuery] int? user = null)
+    public async Task<IResult> GetUsers()
     {
         IQueryable<User>? users = null;
+        List<GetUserDTO>? userdtos = new List<GetUserDTO>();
 
         users = await userRepository.GetManyAsync();
+        foreach(User user in users)
+        {
+            userdtos.Add(new GetUserDTO(user.Username, user.Id));
+        }
 
-
-        return Results.Ok(users);
+        return Results.Ok(userdtos);
     }
 
     [HttpDelete("{id:int}")]

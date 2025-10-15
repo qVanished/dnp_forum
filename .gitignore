@@ -3,6 +3,11 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# ignore entity files
+comment.json
+post.json
+user.json
+
 # dotenv files
 .env
 

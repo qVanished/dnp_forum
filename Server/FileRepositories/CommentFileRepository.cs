@@ -15,6 +15,8 @@ public class CommentFileRepository : ICommentRepository
         {
             File.WriteAllText(filePath, "[]");
         }
+        AddAsync(new Comment("nie", 123, 111));
+        AddAsync(new Comment("nienie", 1232, 113));
     }
 
     private async Task<List<Comment>> readComments()

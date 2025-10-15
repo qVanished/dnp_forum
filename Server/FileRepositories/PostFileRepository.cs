@@ -16,6 +16,10 @@ public class PostFileRepository : IPostRepository
         {
             File.WriteAllText(filePath, "[]");
         }
+        
+        // AddAsync(new Post("Unaa", "qqq", 12));
+        // AddAsync(new Post("Douaa", "nnn", 12));
+
     }
 
     private async Task<List<Post>> readPosts()

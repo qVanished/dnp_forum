@@ -7,8 +7,8 @@ builder.Services.AddControllers();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// builder.Services.AddEndpointsApiExplorer();
+// builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPostRepository, PostFileRepository>();
 builder.Services.AddScoped<IUserRepository, UserFileRepository>();
@@ -20,13 +20,15 @@ app.MapControllers();
 
 //Configure the HTTP request pipeline.
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseSwagger();
+//     app.UseSwaggerUI();
 
-}
+// }
 
 app.UseHttpsRedirection();
 
+Console.WriteLine("API is running");
 app.Run();
+

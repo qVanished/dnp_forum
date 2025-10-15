@@ -7,7 +7,7 @@ public class UpdatePostDTO
     public string Title { get; set; }
     public string Body { get; set; }
 
-    public UpdatePostDTO(string title, string body, int userId)
+    public UpdatePostDTO(string title, string body)
     {
         Title = title;
         Body = body;
