@@ -15,8 +15,6 @@ public class UserFileRepository : IUserRepository
         {
             File.WriteAllText(filePath, "[]");
         }
-         AddAsync(new User("dawid", "dupa123"));
-         AddAsync(new User("vane", "dupa444"));
     }
 
     private async Task<List<User>> readUsers()
@@ -84,6 +82,6 @@ public class UserFileRepository : IUserRepository
         }
         users.Remove(existingUser);
         users.Add(user);
-
+        await writeUsers(users);
     }
 }

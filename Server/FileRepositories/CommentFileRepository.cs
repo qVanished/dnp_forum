@@ -15,8 +15,6 @@ public class CommentFileRepository : ICommentRepository
         {
             File.WriteAllText(filePath, "[]");
         }
-        AddAsync(new Comment("nie", 123, 111));
-        AddAsync(new Comment("nienie", 1232, 113));
     }
 
     private async Task<List<Comment>> readComments()
@@ -95,7 +93,6 @@ public class CommentFileRepository : ICommentRepository
         }
         comments.Remove(existingComment);
         comments.Add(comment);
-        await writeComments(comments);
-        
+        await writeComments(comments);   
     }
 }
