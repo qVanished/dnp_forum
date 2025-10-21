@@ -50,19 +50,41 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         public async Task<IResult> GetComments(
-            [FromQuery] int? postId = null)
+            [FromQuery] int? postId = null,
+            [FromQuery] int? userId = null)
         {
-            IQueryable<Comment>? comments = null;
+            List<Comment>? comments = new List<Comment>();
             if (postId is null)
             {
-                comments = await commentRepository.GetManyAsync();
+                var queryableComments = await commentRepository.GetManyAsync();
+                comments = queryableComments.ToList();
             }
             else
             {
-                comments = await commentRepository.GetManyAsync((int)postId);
+                var queryableComments = await commentRepository.GetManyAsync((int)postId);
+                comments = queryableComments.ToList();
             }
 
-            return Results.Ok(comments);
+            Console.WriteLine(comments);
+
+            List<Comment> commentsToBeSent = new List<Comment>();
+
+            if (userId is not null)
+            {
+                foreach (var comment in comments)
+                {
+                    if(comment.UserId == userId)
+                    {
+                        commentsToBeSent.Add(comment);
+                    }
+                }
+            }
+            else
+            {
+                commentsToBeSent = comments;
+            }
+
+            return Results.Ok(commentsToBeSent);
         }
 
         [HttpDelete("{id:int}")]

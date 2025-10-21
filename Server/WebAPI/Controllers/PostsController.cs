@@ -50,14 +50,45 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         public async Task<IResult> GetPosts(
-            [FromQuery] int? postId = null)
+            [FromQuery] int? userId = null,
+            [FromQuery] string? title = null)
         {
-            IQueryable<Post>? posts = null;
+            List<Post>? postsToBeSent = new List<Post>();
            
-            posts = await postRepository.GetManyAsync();
-            
+            var posts = await postRepository.GetManyAsync();
 
-            return Results.Ok(posts);
+            foreach (var post in posts)
+            {
+                if (userId is not null)
+                {
+                    if (!string.IsNullOrEmpty(title))
+                    {
+                        if (post.Title.Contains(title) && userId == post.UserId)
+                        {
+                            postsToBeSent.Add(post);
+                        }
+                    }
+                    else if (userId == post.UserId)
+                    {
+                        postsToBeSent.Add(post);
+                    }
+                }
+                else if (!string.IsNullOrEmpty(title))
+                {
+                    if (post.Title.Contains(title))
+                    {
+                        postsToBeSent.Add(post);
+                    }
+                }
+                else
+                {
+                    postsToBeSent.Add(post);
+                }
+            }
+
+            //postsToBeSent = (List<Post>)(from post in posts where userId == post.Id && post.Title.Contains(title) select post);
+
+            return Results.Ok(postsToBeSent);
         }
 
         [HttpDelete("{id:int}")]
