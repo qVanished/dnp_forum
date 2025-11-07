@@ -1,0 +1,29 @@
+﻿@page "/createpost"
+
+@using ApiContracts
+@using BlazorApp.Services
+@using System.Threading.Tasks
+@rendermode InteractiveServer
+@inject HttpClient Client
+
+<PageTitle>Add User</PageTitle>
+
+<h1>Add User</h1>
+
+title: <input type="text" @bind-value="title" placeholder="Input title..."> <br>
+body: <textarea placeholder="Input title...">@body</textarea> <br>
+user_id: <input type="text" @bind-value="id" placeholder="Input user id...">
+
+<button class="btn btn-primary" @onclick="createPost">Add</button>
+
+@code {
+    private string title = String.Empty;
+    private string body = String.Empty;
+    private int id = 1;
+
+    private async void createPost(){
+        HttpPostService httpPostService = new HttpPostService(Client);
+        CreatePostDTO createdPost = await httpPostService.AddPostAsync(new CreatePostDTO(title, body, id));
+        Console.WriteLine(createdPost.Title);
+    }
+}

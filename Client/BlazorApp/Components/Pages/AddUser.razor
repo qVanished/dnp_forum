@@ -1,0 +1,28 @@
+﻿@page "/adduser"
+@using ApiContracts
+@using BlazorApp.Services
+@using System.Threading.Tasks
+@rendermode InteractiveServer
+@inject HttpClient Client
+
+<PageTitle>Add User</PageTitle>
+
+<h1>Add User</h1>
+
+username: <input type="text" @bind-value="username"> <br>
+password: <input type="text" @bind-value="password"> <br>
+
+<button class="btn btn-primary" @onclick="addUser">Add</button>
+
+@code {
+    private string username = String.Empty;
+    private string password = String.Empty;
+
+    private async Task addUser()
+    {
+        HttpUserService userService = new HttpUserService(Client);
+        CreateUserDTO createdUser = await userService.AddUserAsync(new ApiContracts.CreateUserDTO(username, password));
+        Console.WriteLine(createdUser.Username);
+    }
+
+}
