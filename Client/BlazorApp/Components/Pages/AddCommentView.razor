@@ -1,0 +1,31 @@
+﻿@using ApiContracts
+@using BlazorApp.Services
+@using ClassLibrary1
+@rendermode InteractiveServer
+@inject HttpClient Client
+
+<h3>AddCommentView</h3>
+
+userId: <input type="number" @bind-value="userId"> <br>
+body: <textarea @bind="body" placeholder="Input text..."></textarea> <br>
+
+<button class="btn btn-primary" @onclick="addComment">Add</button>
+
+
+
+@code {
+    [Parameter]
+    public int? postId { get; set; }
+
+    private string body = String.Empty;
+    private int userId = 0;
+ 
+ private async Task addComment()
+    {   int post = postId ??=0;
+        HttpCommentService commentService = new HttpCommentService(Client);
+        CreateCommentDTO createdComment = await commentService.AddCommentAsync(new CreateCommentDTO(body, userId, post));
+        Console.WriteLine(createdComment.Body);
+    }
+
+
+}

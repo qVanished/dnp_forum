@@ -52,6 +52,20 @@ public class HttpPostService : IPostService
         })!;
     }
 
+    public async Task<List<Post>> GetPostsAsync()
+    {   
+        HttpResponseMessage httpResponse = await client.GetAsync("users");
+        string response = await httpResponse.Content.ReadAsStringAsync();
+        if (!httpResponse.IsSuccessStatusCode)
+        {
+            throw new Exception(response);
+        }
+        return JsonSerializer.Deserialize<List<Post>>(response, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+    }
+
     public async Task<List<Post>> GetPostsAsync(int? userId, string? title)
     {
         //TODO: make get post filter properly

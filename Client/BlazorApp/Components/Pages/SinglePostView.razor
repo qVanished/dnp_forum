@@ -1,0 +1,46 @@
+@page "/post/{id:int}"
+@using BlazorApp.Services
+@using ClassLibrary1
+
+@rendermode InteractiveServer
+@inject HttpClient Client
+
+@if(post is not null){
+    <h3>Title: @post.Title</h3> <br />
+    <h3>Author: @post.Id</h3> <br />
+    @post.Body<br>
+    @* <AddCommentView postId=@post.Id></AddCommentView> *@
+    
+
+}else{
+    <h3>Post is null</h3>
+}
+
+@* TODO: make post.id parameter nullsafe *@
+<AddCommentView postId=@post.Id></AddCommentView>
+
+@if (comments is not null){ 
+    <h3>Comments</h3>
+@foreach(Comment comment in comments){
+    <CommentView comment=comment></CommentView>
+}
+} 
+
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+    public Post? post;
+    public List<Comment>? comments;
+
+    protected async override void OnInitialized()
+    {
+        HttpPostService httpPostService = new HttpPostService(Client);
+        post = await httpPostService.GetPostByIdAsync(id);
+        Console.WriteLine(post.Title);
+        HttpCommentService httpCommentService = new HttpCommentService(Client);
+        comments = await httpCommentService.GetCommentsByPostIdAsync(id);
+        
+    }
+}

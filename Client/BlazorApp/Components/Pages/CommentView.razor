@@ -1,0 +1,14 @@
+﻿@using ClassLibrary1
+@rendermode InteractiveServer
+<h3>CommentView</h3>
+
+
+@if(comment is not null){
+    <p>Author: @comment.UserId</p>
+    <p>Content: @comment.Body</p>
+}
+@code {
+    [Parameter]
+    public Comment? comment { get; set; }
+}
+

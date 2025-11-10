@@ -1,4 +1,5 @@
 using System;
+using ClassLibrary1;
 
 namespace ApiContracts;
 
@@ -11,6 +12,5 @@ public class CreateUserDTO
     {
         Username = username;
         Password = password;
-      
     }
 }

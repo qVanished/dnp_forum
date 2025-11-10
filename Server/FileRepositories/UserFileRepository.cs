@@ -84,4 +84,12 @@ public class UserFileRepository : IUserRepository
         users.Add(user);
         await writeUsers(users);
     }
+
+    public async Task<User> GetSingleAsync(string username, string password)
+    {
+        List<User> users = await readUsers();
+        User? existingUser = users.SingleOrDefault(p => p.Username.Equals(username) && p.Password.Equals(password));
+
+        return existingUser;
+    }
 }

@@ -1,0 +1,12 @@
+﻿@using ClassLibrary1
+
+@rendermode InteractiveServer
+
+@if(post is not null){
+    <a href="./post/@post.Id"><p>Title: @post.Title</p></a>
+}
+
+@code {
+    [Parameter]
+    public Post? post { get; set; }
+}

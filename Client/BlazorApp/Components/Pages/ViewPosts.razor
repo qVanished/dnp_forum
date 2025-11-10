@@ -1,0 +1,26 @@
+﻿@page "/viewposts"
+
+@using ApiContracts
+@using BlazorApp.Services
+@using System.Threading.Tasks
+@using ClassLibrary1
+@using System.Security.Cryptography
+@rendermode InteractiveServer
+@inject HttpClient Client
+
+<PageTitle>View posts</PageTitle>
+
+<h3>View Posts</h3>
+
+@foreach(Post post in posts){
+    <PostView post=post></PostView>
+}
+
+@code {
+    private List<Post> posts = new List<Post>();
+
+    protected async override void OnInitialized(){
+        HttpPostService httpPostService = new HttpPostService(Client);
+        posts = await httpPostService.GetPostsAsync();
+    }
+}

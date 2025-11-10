@@ -6,12 +6,12 @@
 @rendermode InteractiveServer
 @inject HttpClient Client
 
-<PageTitle>Add User</PageTitle>
+<PageTitle>Create Post</PageTitle>
 
-<h1>Add User</h1>
+<h1>Create Post</h1>
 
 title: <input type="text" @bind-value="title" placeholder="Input title..."> <br>
-body: <textarea placeholder="Input title...">@body</textarea> <br>
+body: <textarea @bind="body" placeholder="Input title..."></textarea> <br>
 user_id: <input type="text" @bind-value="id" placeholder="Input user id...">
 
 <button class="btn btn-primary" @onclick="createPost">Add</button>
