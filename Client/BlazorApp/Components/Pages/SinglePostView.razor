@@ -1,20 +1,23 @@
 @page "/post/{id:int}"
 @using BlazorApp.Services
 @using ClassLibrary1
+@using System.Security.Claims
 
 @rendermode InteractiveServer
 @inject HttpClient Client
 
 @if(post is not null){
     <h3>Title: @post.Title</h3> <br />
-    <h3>Author: @post.Id</h3> <br />
+    <h3>Author: @post.UserId</h3> <br />
     @post.Body<br>
-    @* <AddCommentView postId=@post.Id></AddCommentView> *@
-    
+    @if(userId == post.UserId){
+    <button>Edit Post</button>
+    }
 
 }else{
     <h3>Post is null</h3>
 }
+
 
 @* TODO: make post.id parameter nullsafe *@
 <AddCommentView postId=@post.Id></AddCommentView>
@@ -30,17 +33,29 @@
 @code {
     [Parameter]
     public int id { get; set; }
+    public int userId {get; set;}
 
     public Post? post;
     public List<Comment>? comments;
+    [CascadingParameter] public Task<AuthenticationState> State { get; set; }
 
-    protected async override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
         HttpPostService httpPostService = new HttpPostService(Client);
         post = await httpPostService.GetPostByIdAsync(id);
         Console.WriteLine(post.Title);
         HttpCommentService httpCommentService = new HttpCommentService(Client);
         comments = await httpCommentService.GetCommentsByPostIdAsync(id);
+        AuthenticationState authenticationState = await State; 
+        ClaimsPrincipal claimsPrincipal = authenticationState.User; 
+        if(claimsPrincipal.Identity is null || !claimsPrincipal.Identity.IsAuthenticated) 
+        { 
+            // the user is not logged in return; 
+        } 
+        string? userName = claimsPrincipal.Identity?.Name; 
+        IEnumerable<Claim> claims = claimsPrincipal.Claims; 
+        string userIdAsString = claims.Single(c => c.Type == "Id").Value; 
+        userId = int.Parse(userIdAsString);
         
     }
 }

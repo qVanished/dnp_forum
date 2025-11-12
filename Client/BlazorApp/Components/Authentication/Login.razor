@@ -1,5 +1,6 @@
 ﻿@page "/login" 
 @using BlazorApp.Auth
+@using System.Security.Claims
 @inject AuthenticationStateProvider AuthProvider
 @inject NavigationManager navMgr 
 <AuthorizeView> 
@@ -19,6 +20,18 @@
     </NotAuthorized> 
     <Authorized> 
         <h3>Hello, @context.User.Identity.Name</h3> 
+        <p>@context.User.Claims.First(claim => claim.Type.Equals(ClaimTypes.Role)).Value</p>
+        <p>
+            Your claims include:
+            <ol>
+                @foreach (Claim claim in context.User.Claims)
+                {
+                    <li>
+                        <label>@claim.Type: @claim.Value</label>
+                    </li>
+                }
+            </ol>
+        </p>
     </Authorized> 
 </AuthorizeView>
 @code { 

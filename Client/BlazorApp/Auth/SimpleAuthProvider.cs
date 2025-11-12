@@ -77,7 +77,10 @@ public class SimpleAuthProvider : AuthenticationStateProvider
         List<Claim> claims = new List<Claim>()
         {
             new Claim(ClaimTypes.Name, userDto.Username),
-            new Claim("Id", userDto.Id.ToString())
+            new Claim("Id", userDto.Id.ToString()),
+            new Claim(ClaimTypes.Role, "user"),
+            new Claim(ClaimTypes.Role, "admin")
+
         };
         ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth");
 

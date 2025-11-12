@@ -3,6 +3,7 @@
 @using ApiContracts
 @using BlazorApp.Services
 @using System.Threading.Tasks
+@using System.Security.Claims
 @rendermode InteractiveServer
 @inject HttpClient Client
 
@@ -12,18 +13,31 @@
 
 title: <input type="text" @bind-value="title" placeholder="Input title..."> <br>
 body: <textarea @bind="body" placeholder="Input title..."></textarea> <br>
-user_id: <input type="text" @bind-value="id" placeholder="Input user id...">
-
 <button class="btn btn-primary" @onclick="createPost">Add</button>
 
 @code {
     private string title = String.Empty;
     private string body = String.Empty;
     private int id = 1;
-
+    [CascadingParameter] public Task<AuthenticationState> State { get; set; }
     private async void createPost(){
         HttpPostService httpPostService = new HttpPostService(Client);
         CreatePostDTO createdPost = await httpPostService.AddPostAsync(new CreatePostDTO(title, body, id));
         Console.WriteLine(createdPost.Title);
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authenticationState = await State; 
+        ClaimsPrincipal claimsPrincipal = authenticationState.User; 
+        if(claimsPrincipal.Identity is null || !claimsPrincipal.Identity.IsAuthenticated) 
+        { 
+            // the user is not logged in return; 
+        } 
+        string? userName = claimsPrincipal.Identity?.Name; 
+        IEnumerable<Claim> claims = claimsPrincipal.Claims; 
+        string userIdAsString = claims.Single(c => c.Type == "Id").Value; 
+        id = int.Parse(userIdAsString);
+    }
+
 }
