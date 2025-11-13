@@ -3,7 +3,7 @@
 @using BlazorApp.Services
 @using System.Threading.Tasks
 @rendermode InteractiveServer
-@inject HttpClient Client
+@inject IUserService userService
 
 <PageTitle>Add User</PageTitle>
 
@@ -20,7 +20,6 @@ password: <input type="text" @bind-value="password"> <br>
 
     private async Task addUser()
     {
-        HttpUserService userService = new HttpUserService(Client);
         CreateUserDTO createdUser = await userService.AddUserAsync(new ApiContracts.CreateUserDTO(username, password));
         Console.WriteLine(createdUser.Username);
     }

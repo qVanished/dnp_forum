@@ -4,7 +4,8 @@
 @using System.Security.Claims
 
 @rendermode InteractiveServer
-@inject HttpClient Client
+@inject IPostService postService
+@inject ICommentService commentService
 
 @if(post is not null){
     <h3>Title: @post.Title</h3> <br />
@@ -41,11 +42,9 @@
 
     protected async override Task OnInitializedAsync()
     {
-        HttpPostService httpPostService = new HttpPostService(Client);
-        post = await httpPostService.GetPostByIdAsync(id);
+        post = await postService.GetPostByIdAsync(id);
         Console.WriteLine(post.Title);
-        HttpCommentService httpCommentService = new HttpCommentService(Client);
-        comments = await httpCommentService.GetCommentsByPostIdAsync(id);
+        comments = await commentService.GetCommentsByPostIdAsync(id);
         AuthenticationState authenticationState = await State; 
         ClaimsPrincipal claimsPrincipal = authenticationState.User; 
         if(claimsPrincipal.Identity is null || !claimsPrincipal.Identity.IsAuthenticated) 

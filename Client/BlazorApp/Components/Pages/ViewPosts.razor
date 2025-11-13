@@ -6,7 +6,7 @@
 @using ClassLibrary1
 @using System.Security.Cryptography
 @rendermode InteractiveServer
-@inject HttpClient Client
+@inject IPostService postService
 
 <PageTitle>View posts</PageTitle>
 
@@ -20,7 +20,6 @@
     private List<Post> posts = new List<Post>();
 
     protected async override void OnInitialized(){
-        HttpPostService httpPostService = new HttpPostService(Client);
-        posts = await httpPostService.GetPostsAsync();
+        posts = await postService.GetPostsAsync();
     }
 }

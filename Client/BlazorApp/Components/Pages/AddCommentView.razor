@@ -2,7 +2,7 @@
 @using BlazorApp.Services
 @using ClassLibrary1
 @rendermode InteractiveServer
-@inject HttpClient Client
+@inject ICommentService commentService
 
 <h3>AddCommentView</h3>
 
@@ -21,8 +21,8 @@ body: <textarea @bind="body" placeholder="Input text..."></textarea> <br>
     private int userId = 0;
  
  private async Task addComment()
-    {   int post = postId ??=0;
-        HttpCommentService commentService = new HttpCommentService(Client);
+    {   
+        int post = postId ??=0;
         CreateCommentDTO createdComment = await commentService.AddCommentAsync(new CreateCommentDTO(body, userId, post));
         Console.WriteLine(createdComment.Body);
     }

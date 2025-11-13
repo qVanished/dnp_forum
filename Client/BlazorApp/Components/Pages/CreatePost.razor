@@ -5,7 +5,7 @@
 @using System.Threading.Tasks
 @using System.Security.Claims
 @rendermode InteractiveServer
-@inject HttpClient Client
+@inject IPostService postService
 
 <PageTitle>Create Post</PageTitle>
 
@@ -21,8 +21,7 @@ body: <textarea @bind="body" placeholder="Input title..."></textarea> <br>
     private int id = 1;
     [CascadingParameter] public Task<AuthenticationState> State { get; set; }
     private async void createPost(){
-        HttpPostService httpPostService = new HttpPostService(Client);
-        CreatePostDTO createdPost = await httpPostService.AddPostAsync(new CreatePostDTO(title, body, id));
+        CreatePostDTO createdPost = await postService.AddPostAsync(new CreatePostDTO(title, body, id));
     }
 
     protected override async Task OnInitializedAsync()
