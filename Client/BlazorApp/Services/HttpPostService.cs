@@ -54,7 +54,7 @@ public class HttpPostService : IPostService
 
     public async Task<List<Post>> GetPostsAsync()
     {   
-        HttpResponseMessage httpResponse = await client.GetAsync("users");
+        HttpResponseMessage httpResponse = await client.GetAsync("posts");
         string response = await httpResponse.Content.ReadAsStringAsync();
         if (!httpResponse.IsSuccessStatusCode)
         {
@@ -69,7 +69,7 @@ public class HttpPostService : IPostService
     public async Task<List<Post>> GetPostsAsync(int? userId, string? title)
     {
         //TODO: make get post filter properly
-        HttpResponseMessage httpResponse = await client.GetAsync("users");
+        HttpResponseMessage httpResponse = await client.GetAsync("posts");
         string response = await httpResponse.Content.ReadAsStringAsync();
         if (!httpResponse.IsSuccessStatusCode)
         {
@@ -83,7 +83,7 @@ public class HttpPostService : IPostService
 
     public async Task UpdatePostAsync(int id, UpdatePostDTO request)
     {
-        HttpResponseMessage httpResponse = await client.PatchAsJsonAsync($"users/{id}", request);
+        HttpResponseMessage httpResponse = await client.PatchAsJsonAsync($"posts/{id}", request);
         string response = await httpResponse.Content.ReadAsStringAsync();
         if (!httpResponse.IsSuccessStatusCode)
         {
