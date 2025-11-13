@@ -14,6 +14,10 @@ builder.Services.AddScoped(_ => new HttpClient
     BaseAddress = new Uri("http://localhost:5121/api/")
 });
 
+builder.Services.AddScoped<IUserService, HttpUserService>();
+builder.Services.AddScoped<IPostService, HttpPostService>();
+builder.Services.AddScoped<ICommentService, HttpCommentService>();
+
 builder.Services.AddScoped<AuthenticationStateProvider, SimpleAuthProvider>();
 
 builder.Services.AddHttpClient();

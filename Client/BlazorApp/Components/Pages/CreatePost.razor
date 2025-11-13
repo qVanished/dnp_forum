@@ -23,7 +23,6 @@ body: <textarea @bind="body" placeholder="Input title..."></textarea> <br>
     private async void createPost(){
         HttpPostService httpPostService = new HttpPostService(Client);
         CreatePostDTO createdPost = await httpPostService.AddPostAsync(new CreatePostDTO(title, body, id));
-        Console.WriteLine(createdPost.Title);
     }
 
     protected override async Task OnInitializedAsync()

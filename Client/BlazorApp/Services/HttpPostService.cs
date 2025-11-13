@@ -60,6 +60,7 @@ public class HttpPostService : IPostService
         {
             throw new Exception(response);
         }
+        Console.WriteLine(response);
         return JsonSerializer.Deserialize<List<Post>>(response, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
