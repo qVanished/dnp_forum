@@ -21,7 +21,7 @@ public class EFCUserRepository : IUserRepository
 
     public async Task DeleteAsync(int id) 
     { 
-        User? existing = await ctx.Posts.SingleOrDefaultAsync(u => u.Id == id); 
+        User? existing = ctx.Users.SingleOrDefault(u => u.Id == id); 
         if (existing == null) 
         { 
             throw new InvalidOperationException($"User with id {id} not found"); 
@@ -35,19 +35,19 @@ public class EFCUserRepository : IUserRepository
         return ctx.Users.AsQueryable(); 
     }
 
-    public Task<User> GetSingleAsync(int id)
+    public async Task<User> GetSingleAsync(int id)
     {
-        throw new NotImplementedException();
+        return ctx.Users.First(u => u.Id == id);
     }
 
-    public Task<User> GetSingleAsync(string username, string password)
+    public async Task<User> GetSingleAsync(string username, string password)
     {
-        throw new NotImplementedException();
+        return ctx.Users.First(u => u.Username.Equals(username) && u.Password.Equals(password));
     }
 
      public async Task UpdateAsync(User user) 
     { 
-        if (!await ctx.Users.AnyAsync(u => u.Id == user.Id)) 
+        if (!ctx.Users.Any(u => u.Id == user.Id)) 
         { 
             throw new InvalidOperationException($"User with id {user.Id} not found"); 
         } 

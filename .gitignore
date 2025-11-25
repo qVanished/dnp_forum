@@ -8,6 +8,9 @@ comment.json
 post.json
 user.json
 
+# sqlite database
+app.db
+
 # dotenv files
 .env
 

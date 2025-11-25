@@ -21,7 +21,7 @@ public class EFCCommentRepository : ICommentRepository
 
     public async Task DeleteAsync(int id) 
     { 
-        Comment? existing = await ctx.Comments.SingleOrDefaultAsync(p => p.Id == id); 
+        Comment? existing = ctx.Comments.SingleOrDefault(p => p.Id == id); 
         if (existing == null) 
         { 
             throw new InvalidOperationException($"Comment with id {id} not found"); 
@@ -41,14 +41,14 @@ public class EFCCommentRepository : ICommentRepository
         return ctx.Comments.AsQueryable<Comment>(); 
     }
 
-    public Task<Comment> GetSingleAsync(int id)
+    public async Task<Comment> GetSingleAsync(int id)
     {
-        throw new NotImplementedException();
+        return ctx.Comments.First(c => c.Id == id);
     }
 
     public async Task UpdateAsync(Comment comment) 
 { 
-  if (!await ctx.Comments.AnyAsync(c => c.Id == comment.Id)) 
+  if (!ctx.Comments.Any(c => c.Id == comment.Id)) 
   { 
     throw new InvalidOperationException($"Comment with id {comment.Id} not found"); 
   } 

@@ -20,7 +20,7 @@ public class EFCPostRepository : IPostRepository
 
     public async Task DeleteAsync(int id) 
     { 
-        Post? existing = await ctx.Posts.SingleOrDefaultAsync(p => p.Id == id); 
+        Post? existing = ctx.Posts.SingleOrDefault(p => p.Id == id); 
         if (existing == null) 
         { 
             throw new InvalidOperationException($"Post with id {id} not found"); 
@@ -35,14 +35,14 @@ public class EFCPostRepository : IPostRepository
 
     }
 
-    public Task<Post> GetSingleAsync(int id)
+    public async Task<Post> GetSingleAsync(int id)
     {
-        throw new NotImplementedException();
+        return ctx.Posts.First(p => p.Id == id);
     }
 
     public async Task UpdateAsync(Post post) 
     { 
-        if (!await ctx.Posts.AnyAsync(p => p.Id == post.Id)) 
+        if (!ctx.Posts.Any(p => p.Id == post.Id)) 
         { 
             throw new InvalidOperationException($"Post with id {post.Id} not found"); 
         } 
