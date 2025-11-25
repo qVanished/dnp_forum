@@ -8,13 +8,15 @@ public class Post
     public string Title { get; set; }
     public string Body { get; set; }
     public int UserId { get; set; }
-    private static int ID = 0;
+    public User User {get; set;}
+    public List<Comment> Comments {get; set;}
 
     public Post(string title, string body, int userId)
     {
-        Id = ID++;
         Title = title;
         Body = body;
         UserId = userId;
     }
+
+    private Post(){}
 }
